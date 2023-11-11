@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap');
+::selection { background-color: transparent; }
+::-moz-selection { background-color: transparent; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Radio Canada', sans-serif;
+}
+*:focus {outline: none!important;}
+html, body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  background: url('../images/bg.jpg') #000;
+  background-size: cover;
+  background-position: center;
+  color: #fff!important;
+}
+#overlay {
+  position: fixed;
+  top: 0; left: 0; 
+  right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255,255,255,.5);
+  opacity: 1;
+  z-index: 99999;
+  transition: all 1s ease;
+}
+#overlay.out {
+  opacity: 0;
+  z-index: -9999;
+}
+#overlay:after, #overlay:before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid transparent;
+  border-width: 0 3px 3.5px 2px;
+  border-radius: 50%;
+  animation: overlaya .5s linear infinite;
+}
+#overlay:before {
+  border-color: transparent  #fcc300 transparent transparent;
+  animation: ospin 3s linear infinite;
+  z-index: 1;
+}@keyframes ospin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}}
+@-webkit-keyframes overlaya {0% { -webkit-transform: rotate(0deg);border-color: transparent #f00 #f00 transparent; } 50% {border-color: transparent #0f0 #0f0 transparent;} 100% { -webkit-transform: rotate(360deg); border-color: transparent #00f #00f transparent;}}
+
+.hover-cast:hover {box-shadow: 0 5px 5px -5px #333;}
+.container {
+  position: relative;
+  width: 100%;
+  padding: .9rem;
+  max-width: 800px;
+}
+.group {
+  display: block;
+  position: relative;
+  margin-bottom: 16px;
+}
+.group .input, .radios .input:not([type='radio']) {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 16px;
+  border-radius: 24px;
+  transition: all .4s ease-out; 
+  background-color: rgba(255,255,255,.2);
+  color: white;
+}
+.container *:not(h2), *:focus {letter-spacing: 2px; font-size: 1rem;}
+.group .input + label {
+  position: absolute;
+  top: 15px;
+  letter-spacing: 2px;
+  left: 16px;
+  transition: all .2s ease;
+  cursor: text;
+  z-index: 1;
+}
+.group .input:focus + label, .group .input:valid + label {
+  top: -24px;
+  left: 12px;
+}
+.group:not(:first-of-type) .input:not(select):focus {
+  margin-top: 48px;
+}
+.group .input:valid:not(:focus) + label {
+  display: none;
+}
+.input * {background-color: rgba(0,0,0,.8);}
+.off {
+  display: none;
+}
+a {text-decoration: none; color: inherit;}
+.radios {
+  margin-bottom: 16px;
+}
+.radios div {
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: #fcc310;
+}
+.radios div .input[type="radio"] {display: none;}
+.radios div label {
+  display: block;
+  padding: 12px 16px;
+  text-align: center;
+  cursor: pointer;
+  color: #222;
+  transform: all .2s ease;
+}
+.radios div label:last-child {border-left: 4px solid rgba(0,0,0,.2)}
+.radios div .input:checked + label {background-color: rgba(0,0,0,.2); border-color: transparent;}
+.radios .input:not([type='radio']) {display: inline-block; width: auto;}
+.name-strip {
+  display: flex;
+  margin-top: -20px;
+  justify-content: space-between;
+}
+button.btn {
+  position: relative;
+  text-shadow: 1px 1px 1px #333;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,.1);
+  color: white;
+  padding: 16px;
+  font-size: 1rem;
+  transition: all .4s ease-out;
+}
+button.btn:hover {
+  background-color: rgba(255,0,0,.4);
+}
+button.btn.in {padding-left: 38px;}
+button.btn:after {
+  content: "";
+  position: absolute;
+  width: 16px; height: 16px;
+  top: 50%; left: -50px;
+  transform: translateY(-50%);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  border-width: 3px 0px 1px 3px;
+  border-color: transparent transparent #fcc300 #fcc300;
+  animation: spin .8s linear infinite;
+  transition: left .4s ease;
+}
+button.btn.in:after {left: 12px;}
+@-webkit-keyframes spin {0% { -webkit-transform: translateY(-50%) rotate(0deg); } 100% { -webkit-transform: translateY(-50%) rotate(360deg); }}
+@keyframes spin {0% { -webkit-transform: translateY(-50%) rotate(0deg); } 100% { -webkit-transform: translateY(-50%) rotate(360deg); }}
+#load {
+  text-align: center;
+  padding: 24px;
+  min-width: 300px;
+  border-radius: 8px;
+  position: fixed;
+  top: 20px; left: 50%;
+  transform-origin: top;
+  transform: scaleY(0) translateX(-50%);
+  opacity: 0;
+  transition: all .4s ease;
+  z-index: 999;
+}
+#load.in {
+  transform: scaleY(1) translateX(-50%);
+  opacity: 1;
+  box-shadow: 0 2px 5px -2px rgba(0,0,0,.3);
+}
+#feed {
+  position: fixed;
+  z-index: -1;
+  top: 0; left: 0; bottom: 0; right: 0;
+  opacity: .75;
+  background-color: #000;
+  transition: all 1.5s ease;
+}
+.checkmark {
+  width: 7em;
+  height: 7em;
+  margin: auto;
+  position: relative;
+  margin-bottom: 24px;
+}
+.checkmark:before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid #fcc300;
+  border-radius: 25%;
+}
+.checkmark.draw:after {
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+.checkmark:after {
+  opacity: 1;
+  box-shadow: 5px -5px 5px #000;
+  height: 3.5em;
+  width: 1.5em;
+  border-radius: 0 4px 0 0;
+  transform-origin: left top;
+  border-right: 7px solid #5cb85c;
+  border-top: 7px solid #5cb85c;
+  content: "";
+  left: 1.5em;
+  top: 3.5em;
+  position: absolute;
+}
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: 1.5em;
+    opacity: 1;
+  }
+  40% {
+    height: 3.5em;
+    width: 1.5em;
+    opacity: 1;
+  }
+  100% {
+    height: 3.5em;
+    width: 1.5em;
+    opacity: 1;
+  }
+}
