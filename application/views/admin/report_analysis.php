@@ -70,18 +70,30 @@
       <div class="col-12"><h5 class="mb-0 py-2 text-success">Watch</h5></div>
       <div class="col-sm-6 border">
         <h6 class="m-0 p-3 text-center"><b>Most Patronized Service</b></h6>
-        <div class="border-top banner p-2 px-3"><?= $serv[$mostservice->service]; ?> <b>x <?= number_format($mostservice->quantity); ?></b></div>
+        <div class="border-top banner p-2 px-3">
+        <?php if ($mostservice): ?>
+          <?= $serv[$mostservice->service]; ?> <b>x <?= number_format($mostservice->quantity); ?></b>
+        <?php else: ?>
+          <span class="text-danger">unavailable</span>
+        <?php endif ?>
+        </div>
       </div>
       <div class="col-sm-6 border">
         <h6 class="m-0 p-3 text-center"><b>Most Frequent Expense</b></h6>
-        <div class="border-top banner p-2 px-3"><?= $cats[$mostexpense->category]; ?> <b>x <?= number_format($mostexpense->quantity); ?></b></div>
+        <div class="border-top banner p-2 px-3">
+        <?php if ($mostexpense): ?>
+          <?= $cats[$mostexpense->category]; ?> <b>x <?= number_format($mostexpense->quantity); ?></b>
+        <?php else: ?>
+          <span class="text-danger">unavailable</span>
+        <?php endif ?>
+        </div>
       </div>
       <div class="col-12 border border-top-0">
         <div class="banner p-2 px-3">Total Customer Debt <b class="money"><?= number_format($services - $payments); ?></b></div>
         <div class="border-top banner p-3" style="font-size: 1.5rem;">Estimated Profit: <b class="money"><?= number_format($payments - $expenses); ?></b></div>
       </div>
     </div>
-    <div class="p-3 text-center"><span class="text-danger">Note:</span> 'Estimated Profit' is calculated based on money at hand (i.e. payments made by customers) against the net expenses recorded on the system for: <?= substr($dater, strpos($dater, ':') + 1); ?></div>
+    <div class="p-3 mt-3 text-center"><span class="text-danger">Note:</span> 'Estimated Profit' is calculated based on money at hand (i.e. payments made by customers) against the net expenses recorded on the system for: <?= substr($dater, strpos($dater, ':') + 1); ?></div>
   </div>
 </div>
 <?php } ?>

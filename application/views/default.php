@@ -30,7 +30,7 @@
       <button class="d-block d-md-none btn text-warning btn-lg t1 d-block d-md-none" style="text-shadow: .5px .5px .5px #333"><i class="bi-list"></i></button>
     </div>
     <div class="bgs py-3 position-relative" style="height: calc(100% - 54px);">
-      <div id="main-container" class="position-absolute p-lg-4 py-3" style="top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto;">
+      <div id="main-container" class="position-absolute py-lg-4 px-lg-3 py-3" style="top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto;">
         <?php include ('admin/'.$page.'.php'); ?>
       </div> 
       <div class="container text-center d-none d-print-block py-3" style="font-size: .9rem; opacity: .5;">
