@@ -4,7 +4,7 @@
 ?>
   <div class="group">
     <label>Date of Expense:</label>
-    <input type="text" name="dated" class="input" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-autoclose="true" value="<?= date('Y-m-d'); ?>" readonly="readonly" />
+    <input type="text" name="dated" class="input" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-autoclose="true" value="<?= $item->date ?? date('Y-m-d'); ?>" readonly="readonly" />
   </div>
   <div class="group">
     <label>Expense Category:</label>
@@ -26,5 +26,3 @@
   </div>
   <button type="submit" class="btn btn-yfarms submit" data-ref="<?= base_url('sys/expenses/'.$this_id) ?>">Save</button>
 <?= form_close(); ?>
-<link rel="stylesheet" href="<?= base_url().'assets/datepicker/bootstrap-datepicker3.standalone.min.css'?>" />
-<script type="text/javascript" src="<?= base_url().'assets/datepicker/bootstrap-datepicker.min.js'?>"></script>

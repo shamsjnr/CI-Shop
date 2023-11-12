@@ -1,9 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<div class="container-fluid text-end mb-3">
+<div class="container banner d-print-none mb-3">
+  <div class="group mb-0"><input type="text" class="input" id="search" placeholder="Search through expenses" /></div>
+  <div class="w-100 d-md-block d-none">&nbsp;</div>
   <a href="<?= base_url('pull/expense'); ?>" class="btn btn-yfarms " data-bs-target="#mModal" data-bs-toggle="modal" data-title="Add an Expense ">
     <i class="bi-plus-lg"></i> New Expense </a>
 </div>
-<div class="container-fluid table-responsive" style="min-height: 240px;">
+<div class="container table-responsive" style="min-height: 240px;">
   <table class="table table-hovers">
     <thead>
       <tr>
@@ -13,7 +15,7 @@
         <th>Amount</th>
         <th>Date</th>
         <th>By</th>
-        <th width="40px"></th>
+        <th width="40px" class="d-print-none"></th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +40,7 @@
         <td><span class="money"><?= number_format($row['amount']); ?></span></td>
         <td><?= $row['date'] ? date('d M, Y', strtotime($row['date'])) : '-'; ?></td>
         <td<?= ($staff[$row['staff']][1] != null) ? ' class="bg-light text-secondary"' : ''; ?>><?= $staff[$row['staff']][0]; ?></td>
-        <td class="dropstart py-1">
+        <td class="dropstart py-1 d-print-none">
           <button class="btn btn-sm " type="button"data-bs-toggle="dropdown"> <i class="bi-three-dots-vertical"></i> </button>
           <div class="dropdown-menu dropdown-menu-end">
             <a href="<?= base_url('pull/expense/'.$row['id']); ?>" class="dropdown-item " data-bs-target="#mModal" data-bs-toggle="modal">

@@ -16,7 +16,7 @@
   </div>
   <div class="group">
     <label>Payment Date</label>
-    <input type="date" class="input" value="<?= $item->date ?? date('Y-m-d') ?>" name="dated" required />
+    <input type="text" name="dated" class="input" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-autoclose="true" value="<?= $item->date ?? date('Y-m-d'); ?>" readonly="readonly" />
   </div>
   <div class="group">
     <label>Payment Amount</label>

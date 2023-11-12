@@ -3,7 +3,7 @@
   <a href="<?= base_url('pull/staff'); ?>" class="btn btn-yfarms " data-bs-target="#mModal" data-bs-toggle="modal" data-title="Add a Staff ">
     <i class="bi-plus-lg"></i> New Staff </a>
 </div>
-<div class="container-fluid table-responsive">
+<div class="container-fluid table-responsive" style="min-height: 240px">
   <table class="table table-hovers">
     <thead>
       <tr>
@@ -32,7 +32,11 @@
           <div class="dropdown-menu dropdown-menu-end">
             <a href="<?= base_url('pull/staff/'.$row['id']); ?>" class="dropdown-item " data-bs-target="#mModal" data-bs-toggle="modal">
               <i class="bi-pencil-square"></i> Edit Staff
-              <span class="d-none" data-title="Edit Staff Details "></span>
+              <span class="d-none" data-title="Update Staff Details "></span>
+            </a>
+            <a href="<?= base_url('sys/password/'.$row['id']); ?>" class=" dropdown-item" data-bs-target="#mModalX" data-bs-toggle="modal">
+              <i class="bi-person-lock"></i> Reset Password
+              <span class="d-none msg">This operation will reset <b><?= $row['name']; ?></b>'s login password and they will no longer be able to login with their current credentials. <br />Sure to Continue?</span>
             </a>
             <a href="<?= base_url('drop/admin/'.$row['id']); ?>" class=" dropdown-item" data-bs-target="#mModalX" data-bs-toggle="modal">
               <i class="bi-trash3-fill text-danger"></i> Delete

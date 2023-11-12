@@ -5,27 +5,27 @@ Jayyid Rice Project
 To be built with the following features
 
 - Stakeholders:
-- - Admin
-- - Manager
-- - Sales Personnel
+    - Admin
+    - Manager
+    - Sales Personnel
 
 - Customer Info:
-- - Name
-- - Remark
-- - Phone Number
+    - Name
+    - Remark
+    - Phone Number
 
 - Expenses:
-- - Categories
-- - Report
+    - Categories
+    - Report
 
 - Receipt:
-- - Service Details
-- - Company Phone
-- - Customer Details
-- - Service Remark
+    - Service Details
+    - Company Phone
+    - Customer Details
+    - Service Remark
 
 - Service Management
 
 - Admin User:
-- - Net / Gross Profits
-- - Expenses Report
+    - Net / Gross Profits
+    - Expenses Report

@@ -30,10 +30,10 @@ class Login extends CI_Controller {
     if (!$login) exit(json_encode(['status'=>'error', 'message'=>'No matching record for supplied login details']));
 
     $name = explode(' ', $login->name)[0];
-    $_SESSION['yf_name'] = $name;
     if ($login->role == 'Admin') $_SESSION['yf_admin'] = true;
-    // $_SESSION['yf_branch'] = $login->branch;
+    $_SESSION['yf_role'] = $login->role;
     $_SESSION['yf_user'] = $login->id;
+    $_SESSION['yf_name'] = $name;
     echo json_encode(['status'=>'success', 'message'=>'Logged in. Redirecting...']);
   }
 

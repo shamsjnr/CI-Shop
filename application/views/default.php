@@ -13,10 +13,8 @@
       <ul class="nav overflow-hidden flex-column pb-3">
         <?php include('admin/nav.php');?>
         <li class="nav-item position-absolute fixed-bottom">
-          <a href="<?= base_url('signout'); ?>" class="nav-link" data-bs-toggle="modal" data-bs-target="#mModalX">
-            <i class="bi-lock"></i> Change Password
-            <span class="msg d-none">Click <b class="text-success">continue</b> to confirm</span>
-          </a>
+          <a href="<?= base_url('pull/password'); ?>" class="nav-link" data-bs-target="#mModal" data-bs-toggle="modal" data-title="Change Password">
+            <i class="bi-unlock"></i> Change Password </a>
           <a href="<?= base_url('signout'); ?>" class="nav-link" data-bs-toggle="modal" data-bs-target="#mModalX">
             <i class="bi-power text-danger"></i> Log out
             <span class="msg d-none">Click <b class="text-success">continue</b> to confirm</span>
@@ -35,20 +33,12 @@
       <div id="main-container" class="position-absolute p-lg-4 py-3" style="top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto;">
         <?php include ('admin/'.$page.'.php'); ?>
       </div> 
+      <div class="container text-center d-none d-print-block py-3" style="font-size: .9rem; opacity: .5;">
+        <em>Powered By</em>&nbsp; <a href="https://ionicbitz.net" class="d-inline-block" style="text-decoration: none;">IonicBitz</a></div>
     </div>
   </div>
 </div>
 <?php include('modals.php'); ?>
-
-<?php if ($this->session->flashdata('notetext') != ''): ?>
-<script type="text/javascript" defer>
-  $.Toast('Success', '<?= $this->session->flashdata('notetext') ?>', 'success', {
-    has_icon:true,
-    timeout:7000,
-    position_class: 'toast-top-end',
-    rtl:false
-  });
-</script>
-<?php endif ?>
+<span class="d-none" id="notify"><?= $this->session->flashdata('notetext'); ?></span>
 </body>
 </html>

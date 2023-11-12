@@ -13,6 +13,11 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="<?= base_url('assets/toaster/toast.script.js') ?>"></script>
 	<script type="text/javascript" src="<?= base_url('assets/js/'. md5('er_default') .'.js'); ?>" defer></script>
-	<title><?= ucwords($page) ?> - YFarms</title>
+	<?php if (in_array($page, ['report_analysis', 'report_services', 'report_expenses'])): ?>
+	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+	<?php endif ?>
+	<link rel="stylesheet" href="<?= base_url().'assets/datepicker/bootstrap-datepicker3.standalone.min.css'?>" />
+	<script type="text/javascript" src="<?= base_url().'assets/datepicker/bootstrap-datepicker.min.js'?>"></script>
+	<title><?= ucwords(str_replace('_', ' ', $page)) ?> &nbsp;&middot;&nbsp; Jayyid Rice</title>
 </head>
 <body>

@@ -3,19 +3,17 @@
 ::selection { background-color: #fc3; }
 ::-moz-selection { background-color: #fc3; }
 ::-webkit-scrollbar {
-  width: 11px;
-  display: none;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
   background-color: #fff2f2;
 }
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #ffc107;
+  background-color: #f2fff2;
   box-shadow: 0 0 5px 0 inset rgba(0,0,0,.3);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #efb107;
+  background-color: #d8ffd8;
 }
 :root {
   --background: #f2fff2;
@@ -37,7 +35,7 @@ html, body {
   width: 100%;
   height: 100%;
 }
-body {background: linear-gradient(to right, #fff, var(--background), var(--background));}
+body {background: linear-gradient(135deg, #fff, var(--background), var(--background));}
 body.dark {background-color: #242424; color: #f2f2f2;}
 body.dark #mModal .modal-dialog > *, body.dark #mModalX .modal-dialog > * {
   background-color: #242424;
@@ -154,7 +152,7 @@ body.dark .popup .content {
   overflow: hidden;
   background-color: rgba(0, 0, 0, .8);
   transition: all .2s ease-in;
-  z-index: 999;
+  z-index: 90;
 }
 #fakeNav.in {
   opacity: 1;
@@ -386,6 +384,10 @@ table.table.table-hovers tr.loading:after, table.table.table-hovers tr.loading:b
   z-index: 1;
   opacity: 1;
 }
+table.table tfoot tr td {border: none}
+.toast-item-wrapper.success {
+  background-color: rgb(25,135,84)!important;
+}
 .carded {
   position: relative;
   padding: 1rem;
@@ -449,9 +451,8 @@ table.table.table-hovers tr.loading:after, table.table.table-hovers tr.loading:b
   z-index: 1;
   height: 100%;
 }
-.group .input[disabled], .group .input[readonly], select.input {
-  padding: 12px 16px !important;
-}
+.group .input[disabled], .group .input[readonly], select.input {padding: 12px 16px !important;}
+.group .input.py-2 {padding: .5rem 16px !important;}
 .group .input[disabled], .group .input[readonly] {
   background-color: rgba(0, 0, 0, .075);
 }

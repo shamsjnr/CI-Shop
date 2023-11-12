@@ -15,9 +15,9 @@
 </div>
 <div class="modal fade px-2" id="mModalX" style="z-index: 99999; margin-top: -80px;">  
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content border-0 overflow-hidden" style="border-radius: 12px; box-shadow: 0 0 12px -1px #ccc;">
+    <div class="modal-content border-0 overflow-hidden" style="border-radius: 12px; box-shadow: 0 0 12px -1px rgba(0,0,0,.2);">
       <div class="modal-header pb-2 pt-3 border-0">
-        <h5 class="mb-0"><i class="fa fa-exclamation-circle text-danger"></i> Warning</h5>
+        <h5 class="mb-0"><i class="bi-exclamation-octagon-fill text-danger"></i> Warning</h5>
       </div>
       <div class="modal-body rounded text-center px-0">
         <div class="container-fluid p-3 mb-3" id="alert-text"></div>

@@ -14,6 +14,7 @@
     <i class="bi-cash"></i> <span>Expenses</span>
   </a>
 </li>
+<?php if ($this->session->userdata('yf_admin') === true): ?>
 <li class="nav-item drop">
   <a href="javascript:void(0)" onclick="this.classList.toggle('active')" class="nav-link drop-toggle <?= (substr($page, 0, 4) == 'set_') ? 'active' : ''; ?>">
     <i class="bi-gear"></i> <span>Settings</span>
@@ -24,8 +25,18 @@
     <a href="<?= base_url('upanel/set_categories') ?>" class="nav-link <?= ($page=='set_categories') ? 'active' : 'linking'; ?>">Expense Categories</a>
   </div>
 </li>
-<li class="nav-item">
-  <a href="<?= ($page=='report') ? 'javascript:void(0)' : base_url('upanel/report'); ?>" class="nav-link <?= ($page=='report') ? 'active' : 'linking'; ?>">
-    <i class="bi-file-ruled-fill"></i> <span>Report</span>
+<?php endif ?>
+<?php if ($this->session->userdata('yf_role') !== 'Personnel'): ?>
+<li class="nav-item drop">
+  <a href="javascript:void(0)" onclick="this.classList.toggle('active')" class="nav-link drop-toggle <?= (substr($page, 0, 7) == 'report_') ? 'active' : ''; ?>">
+    <i class="bi-clipboard-data"></i> <span>
+      <span class="d-none"><?= ($page == 'report_expenses') ? 'Expenses' : ($page == 'report_services' ? 'Services' : 'Business Analysis'); ?></span>
+    Report</span>
   </a>
+  <div class="drop-menu">
+    <a href="<?= base_url('upanel/report_expenses') ?>" class="nav-link <?= ($page=='report_expenses') ? 'active' : 'linking'; ?>">Expenses Report</a>
+    <a href="<?= base_url('upanel/report_services') ?>" class="nav-link <?= ($page=='report_services') ? 'active' : 'linking'; ?>">Services Report</a>
+    <a href="<?= base_url('upanel/report_analysis') ?>" class="nav-link <?= ($page=='report_analysis') ? 'active' : 'linking'; ?>">Business Analysis</a>
+  </div>
 </li>
+<?php endif ?>

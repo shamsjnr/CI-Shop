@@ -17,5 +17,3 @@ $route['sys/(:any)/(:any)']         = 'admin/$1/$2';
 $route['drop/(:any)/(:any)']        = 'admin/popdata/$1/$2';
 $route['register']                  = 'rgm/register';
 $route['signout']                   = 'login/signout';
-$route['change_pass/(:any)']        = 'signin/password/$1';
-

@@ -8,17 +8,20 @@
     $rnd = 'rgba('.hexdec(substr($r,0,2)).','.hexdec(substr($g,4,2)).','.hexdec(substr($b,8,2)).", $a)";
     return $rnd;
   }
-  $this->db->group_by('voucher');
-  $this->db->where('deleted_at IS NULL');
-  $tasks = $this->rgm_model->find_count('tasks');
-  $this->db->select('SUM(`price` * `quantity`) AS total');
-  $services = $this->rgm_model->find('tasks', ['price >'=>0])->total ?? 0;
-  $this->db->select('SUM(`amount`) AS amount');
-  $payments = $this->rgm_model->find('payments', ['amount >'=>0])->amount ?? 0;
-  $this->db->select('SUM(`amount`) AS amount');
-  $expenses = $this->rgm_model->find('expenses', ['amount >'=>0])->amount ?? 0;
+
+  if ($this->session->userdata('yf_role') !== 'Personnel') {
+    $this->db->where('deleted_at IS NULL')->group_by('voucher');
+    $tasks = $this->rgm_model->find_count('tasks');
+    $this->db->select('SUM(`price` * `quantity`) AS total');
+    $services = $this->rgm_model->find('tasks', ['price >'=>0])->total ?? 0;
+    $this->db->select('SUM(`amount`) AS amount');
+    $payments = $this->rgm_model->find('payments', ['amount >'=>0])->amount ?? 0;
+    $this->db->select('SUM(`amount`) AS amount');
+    $expenses = $this->rgm_model->find('expenses', ['amount >'=>0])->amount ?? 0;
+  }
 ?>
 <div class="container">
+  <?php if ($this->session->userdata('yf_role') !== 'Personnel') { ?>
   <div class="row">
     <div class="col-md-6">
       <div class="carded" style="background: linear-gradient(45deg, white, <?= rgb() ?>);">
@@ -58,6 +61,7 @@
       </div>
     </div>
   </div>
+  <?php } ?>
   <div class="pt-4 pb-2">
     <h5>Pending Services</h5>
   </div>

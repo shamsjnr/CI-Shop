@@ -55,7 +55,7 @@
     </div>
     <div class="text-center pt-3">
       <button class="btn btn-outline-info subm w-50" data-form="subForm"
-      data-ref="<?= base_url('sys/tasks/add?voucher='.($item->voucher ?? $uid)) ?>">Add to list</button>
+      data-ref="<?= base_url('sys/tasks/add?voucher='.($item->voucher ?? $uuid)) ?>">Add to list</button>
     </div>
     <?= form_close(); ?>
   </div>
@@ -79,12 +79,9 @@
     <div class="col-md-5 offset-md-3 px-3">
     </div>
   </div>
-  <button type="submit" class="btn btn-yfarms w-100 subm" data-form="mainForm" <?= ( ! $item) ? 'disabled' : ''; ?> 
-  data-ref="<?= base_url('sys/tasks/save?target='.$this_id) ?>">Save</button>
+  <button type="submit" class="btn btn-yfarms w-100 subm" id="sumx" data-form="mainForm" <?= ( ! $item) ? 'disabled' : ''; ?> 
+  data-ref="<?= base_url('sys/tasks/save?target='.$uuid) ?>">Save</button>
 </div>
-  
-<link rel="stylesheet" href="<?= base_url().'assets/datepicker/bootstrap-datepicker3.standalone.min.css'?>" />
-<script type="text/javascript" src="<?= base_url().'assets/datepicker/bootstrap-datepicker.min.js'?>"></script>
 <script type="text/javascript">
   $('#mModal .modal-dialog').addClass('modal-lg');
   $('.subm').click(function(e) {

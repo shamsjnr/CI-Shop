@@ -49,7 +49,21 @@ class Admin extends CI_Controller
       $this->rgm_model->clean('admin', $param, $data);
     }
     $this->session->set_flashdata('notetext', 'Record '. ($param == '') ? 'inserted' : 'updated');
-    $this->session->set_flashdata('notecolor', 'success');
+    echo json_encode(['status'=>'success', 'message'=>'']);
+  }
+
+  // RESET STAFF PASSWORD
+  function password($staff)
+  {
+    if ( ! $this->input->is_ajax_request()) {
+      http_response_code(400);
+      exit('REQUEST FAILED!');
+    }
+    $staff = $this->rgm_model->find('admin', ['id'=>$staff]);
+    if ( ! $staff) exit(json_encode(['status'=>'error', 'message'=>'An unknown error occurred <br />Refresh and try again']));
+
+    $this->rgm_model->clean('admin', $staff->id, ['password'=>password_hash('YFstaff', PASSWORD_DEFAULT)]);
+    $this->session->set_flashdata('notetext', $staff->name.'\'s password has been reset to: <h5 class="mt-3">"staff"</h5>');
     echo json_encode(['status'=>'success', 'message'=>'']);
   }
 
@@ -79,7 +93,6 @@ class Admin extends CI_Controller
     else $this->rgm_model->clean('services', $param, $data);
 
     $this->session->set_flashdata('notetext', 'Record '. ($param == '') ? 'inserted' : 'updated');
-    $this->session->set_flashdata('notecolor', 'success');
     echo json_encode(['status'=>'success', 'message'=>'']);
   }
 
@@ -101,7 +114,8 @@ class Admin extends CI_Controller
       $service = $this->rgm_model->find('services', ['id'=>$service]);
       if ( ! $service) exit(json_encode(['status'=>'error', 'message'=>'Invalid data received']));
         
-      $data['amount'] = $service->amount;
+      $data['price'] = $service->price;
+      $data['author'] = $_SESSION['yf_user'];
       $data['voucher'] = $this->input->get('voucher');
       $data['task_id'] = $code;
       $data['service'] = $service->id;
@@ -112,7 +126,7 @@ class Admin extends CI_Controller
 
       exit(json_encode([
         'status'=>'success', 
-        'message'=>$this->load->view('popups/admin/tasks', ['uuid'=>$data['voucher']], true)
+        'message'=>$this->load->view('popups/tasks', ['uuid'=>$data['voucher']], true)
       ]));
     } elseif ($param == 'drop') {
       $task = $this->rgm_model->find('tasks', ['id'=>$this->input->get('target')]);
@@ -153,7 +167,6 @@ class Admin extends CI_Controller
     }
 
     $this->session->set_flashdata('notetext', 'Saved Successfully');
-    $this->session->set_flashdata('notecolor', 'success');
     echo json_encode(['status'=>'success', 'message'=>'']);
   }
 
@@ -189,7 +202,30 @@ class Admin extends CI_Controller
     else $this->rgm_model->clean('payments', $param, $data);
 
     $this->session->set_flashdata('notetext', 'Record '. ($param == '') ? 'inserted' : 'updated');
-    $this->session->set_flashdata('notecolor', 'success');
+    echo json_encode(['status'=>'success', 'message'=>'']);
+  }
+
+  // REPORT SETTER...
+  function report($param='')
+  {
+    if ( ! $this->input->is_ajax_request()) {
+      http_response_code(400);
+      exit('REQUEST FAILED!');
+    }
+
+    $xdate = trim($this->input->post('start_date'));
+    $ydate = trim($this->input->post('stop_date'));
+
+    if ( ! in_array($param, ['report_expenses', 'report_analysis', 'report_services']))
+
+      exit(json_encode(['status'=>'error', 'message'=>'An unknown error occurred']));
+    if ($xdate == '' && $ydate == '') exit(json_encode(['status'=>'error', 'message'=>'A Start date or Stop date must be set']));
+    $ydate = $ydate ?: date('Y-m-d');
+    if ($xdate > $ydate OR $ydate > date('Y-m-d')) exit(json_encode(['status'=>'error', 'message'=>'Set a valid date range']));
+      
+    $_SESSION["x_{$param}"] = $xdate;
+    $_SESSION["y_{$param}"] = $ydate;
+
     echo json_encode(['status'=>'success', 'message'=>'']);
   }
 
@@ -215,7 +251,6 @@ class Admin extends CI_Controller
     else $this->rgm_model->clean('categories', $param, $data);
 
     $this->session->set_flashdata('notetext', 'Record '. ($param == '') ? 'inserted' : 'updated');
-    $this->session->set_flashdata('notecolor', 'success');
     echo json_encode(['status'=>'success', 'message'=>'']);
   }
 
@@ -249,7 +284,6 @@ class Admin extends CI_Controller
     else $this->rgm_model->clean('expenses', $param, $data);
 
     $this->session->set_flashdata('notetext', 'Record '. ($param == '') ? 'inserted' : 'updated');
-    $this->session->set_flashdata('notecolor', 'success');
     echo json_encode(['status'=>'success', 'message'=>'']);
   }
 
@@ -276,7 +310,6 @@ class Admin extends CI_Controller
     else
       exit('Error!');
 
-    $this->session->set_flashdata('notecolor', 'success');
     $this->session->set_flashdata('notetext', 'Record Deleted!');
     if (strstr(current_url(), '/drop/') != '') echo json_encode(['status'=>'success', 'message'=>'']);
   }

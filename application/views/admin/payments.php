@@ -29,7 +29,7 @@
       <div>Balance Due: <b class="text-dark money"><?= number_format($sum->total - $pay) ?></b></div>
     </div>
   </div>
-  <div class="table-responsive text-nowrap mb-3" style="min-height: initial;">
+  <div class="table-responsive text-nowrap mb-3">
     <table class="table<?= (count($data) > 0) ? ' table-hovers' : ''; ?>">
       <thead>
         <tr>
