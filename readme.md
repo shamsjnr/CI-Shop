@@ -16,7 +16,7 @@ For a quick local setup:
 - Create a database and name it `halmat`
 - Open up the new database and click on import
 - Import the file (at the root of your downloaded zip) `halmat.sql`
-- You have successfully setup the project (The imported file comes with a few test users as shown below)
+- You have successfully setup the project
 
 ## Stakeholders:
 - Admin
@@ -29,6 +29,7 @@ For a quick local setup:
 - Services
 - Reports
 
-## Test Details:
-- Admin user: admin
+## Test login Details:
+_If you successfully imported `halmat.sql` you should be able to log into the application using these details_
+- username: admin
 - Password: admin0
