@@ -1,6 +1,6 @@
 # CI - Shop
 
-## This is a CodeIgniter3 sales ERP with fairly limited features
+## CodeIgniter3 sales ERP with fairly limited features
 This is a shallow copy of a project I developed in 2021, the goal of making this project opensource is to showcase what I can do (I do not have a lot of internet presence as I've always been on contract) and give upcoming and even experienced devs a new angle to look at CI from
 
 ### Disclaimer
