@@ -18,17 +18,17 @@ For a quick local setup:
 - Import the file (at the root of your downloaded zip) `halmat.sql`
 - You have successfully setup the project (The imported file comes with a few test users as shown below)
 
-- Stakeholders:
-    - Admin
-    - Manager
-    - Sales Personnel
+## Stakeholders:
+- Admin
+- Manager
+- Sales Personnel
 
-- Modules:
-    - Debtors
-    - Expenses
-    - Services
-    - Reports
+## Modules:
+- Debtors
+- Expenses
+- Services
+- Reports
 
-- Test Details:
-    - Admin user: admin
-    - Password: admin0
+## Test Details:
+- Admin user: admin
+- Password: admin0
